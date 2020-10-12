@@ -21,7 +21,7 @@ loann_email = "taoloann@gmail.com"
 nic_email = "nicolas_belzile@hotmail.com"
 ocs_email = "oscarqptao@gmail.com"
 madd_email = "cynthia_nguyen25@hotmail.com"
-linn_email = "taothuy8@hotmail.com"
+linn_email = "linntao72888@gmail.com"
 
 # main function
 def main():
