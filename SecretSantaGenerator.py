@@ -11,6 +11,18 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 random.shuffle(numbers)
 random.shuffle(namelist)
 
+# hard coded emails in for participants to be used in the send emails function
+cyn_email = "cynthia_nguyen25@hotmail.com"
+bran_email = "brandontat@hotmail.com"
+mich_email = "michelley123_1@hotmail.com"
+dan_email = "daniellen08@gmail.com"
+dell_email = "dasayson@hotmail.com"
+loann_email = "taoloann@gmail.com"
+nic_email = "nicolas_belzile@hotmail.com"
+ocs_email = "oscarqptao@gmail.com"
+madd_email = "cynthia_nguyen25@hotmail.com"
+linn_email = "taothuy8@hotmail.com"
+
 # main function
 def main():
 
