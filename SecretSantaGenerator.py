@@ -6,7 +6,7 @@ import random
 
 finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 buyinglist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
-namelist= ["Cynthia", "Danielle", "Dell", "Maddison", "Oscar", "Brandon", "Michelle", "Loann", "Nik"]
+namelist= ["Cynthia", "Danielle", "Dell", "Maddison", "Oscar", "Brandon", "Michelle", "Loann", "Nic"]
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 random.shuffle(numbers)
 random.shuffle(namelist)
