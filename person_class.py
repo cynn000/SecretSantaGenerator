@@ -1,8 +1,8 @@
 class Person:
 
-    def __init__(person, name, email, buying_for):
-        person.name = name
-        person.email = email
-        person.buying_for = buying_for
+    def __init__(self, name, email, buying_for):
+        self.name = name
+        self.email = email
+        self.buying_for = buying_for
         
         
