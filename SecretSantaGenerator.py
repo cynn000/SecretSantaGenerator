@@ -1,6 +1,7 @@
 # October 10, 2020
 # Secret Santa Generator based off of https://www.youtube.com/watch?v=GhnCj7Fvqt0
 
+# import random module
 import random
 
 finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
@@ -10,6 +11,7 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 random.shuffle(numbers)
 random.shuffle(namelist)
 
+# main function
 def main():
 
     print()
@@ -38,6 +40,7 @@ def main():
         if buyingfor == "Maddison": 
             buyingfor = "Linn"
             buyingidx = 10
+            
         # send emails here
         
         print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
@@ -45,12 +48,15 @@ def main():
     print("10 Linn is buying for Maddison", maddieidx)
     
     # send lastt email for mom here
-        
+
+# function to create the list of names        
 def make_list(x, y):
     finallist[y-1] = x
 
+# function to create the list of buying for names
 def make_buying_list(x, y):
     buyinglist[x-1] = y
 
+# function to start main
 if __name__ == "__main__":
     main()
