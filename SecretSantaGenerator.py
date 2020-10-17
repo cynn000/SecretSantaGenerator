@@ -1,7 +1,7 @@
 # October 10, 2020
 # Secret Santa Generator based off of https://www.youtube.com/watch?v=GhnCj7Fvqt0
 
-# import random module
+# import random and person class module
 import random
 import person_class
 
