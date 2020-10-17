@@ -90,7 +90,7 @@ def main():
     # loop through the finalist length to list out the names and who they are buying for
     for x in range(len(finallist)):
     
-        # set y as the ... something ... WHY IS THIS HERE
+        # set y as the number of who they are buying for minus 1 due to index
         y = buyinglist[x] - 1
         
         # participant name
