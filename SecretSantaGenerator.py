@@ -3,6 +3,7 @@
 
 # import random module
 import random
+import person_class
 
 finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 buyinglist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
@@ -20,7 +21,6 @@ dell_email = "dasayson@hotmail.com"
 loann_email = "taoloann@gmail.com"
 nic_email = "nicolas_belzile@hotmail.com"
 ocs_email = "oscarqptao@gmail.com"
-madd_email = "cynthia_nguyen25@hotmail.com"
 linn_email = "linntao72888@gmail.com"
 
 # main function
@@ -28,6 +28,18 @@ def main():
 
     print()
     idx = 0
+    
+    # creating a new person class with name, email, and unknown buying for until determined
+    cynthia = person_class.Person("Cynthia", cyn_email, "unknown")
+    danielle = person_class.Person("Danielle", dan_email, "unknown")
+    dell = person_class.Person("Dell", dell_email, "unknown")
+    maddison = person_class.Person("Maddison", cyn_email, "unknown")
+    oscar = person_class.Person("Oscar", ocs_email, "unknown")
+    brandon = person_class.Person("Brandon", bran_email, "unknown")
+    michelle = person_class.Person("Michelle", mich_email, "unknown")
+    loann = person_class.Person("Loann", loann_email, "unknown")
+    nic = person_class.Person("Nic", nic_email, "unknown")
+    linn = person_class.Person("Linn", linn_email, "Maddison")
 
     for name in namelist:
         number = numbers[idx]
@@ -38,6 +50,7 @@ def main():
         print(name, "You are number:", number, "You are buying for number:", number2)
         make_list(name, number)
         make_buying_list(number, number2)
+        
         idx = idx + 1
     
     maddieidx = finallist.index("Maddison")+1
@@ -47,6 +60,7 @@ def main():
 
     for x in range(len(finallist)):
         y = buyinglist[x] - 1
+        participant = finallist[x]
         buyingfor = finallist[y]
         buyingidx = buyinglist[x]
         if buyingfor == "Maddison": 
@@ -55,7 +69,21 @@ def main():
             
         # send emails here
         
-        print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
+        print(x+1, participant, "is buying for" , buyingfor, buyingidx)
+        
+        # setting the buying_for variable as it is noe determined
+        if participant == "Cynthia": cynthia.buying_for = buyingfor
+        if participant == "Danielle": danielle.buying_for = buyingfor
+        if participant == "Dell": dell.buying_for = buyingfor
+        if participant == "Maddison": maddison.buying_for = buyingfor
+        if participant == "Oscar": oscar.buying_for = buyingfor
+        if participant == "Brandon": brandon.buying_for = buyingfor
+        if participant == "Michelle": michelle.buying_for = buyingfor
+        if participant == "Loann": loann.buying_for = buyingfor
+        if participant == "Nic": nic.buying_for = buyingfor
+
+        print(cynthia.name, cynthia.email, cynthia.buying_for)
+        print()
     
     print("10 Linn is buying for Maddison", maddieidx)
     
