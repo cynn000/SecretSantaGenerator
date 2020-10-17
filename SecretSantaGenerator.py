@@ -40,6 +40,7 @@ def main():
     idx = 0
     
     # creating a new person class with name, email, and unknown buying for until determined
+    # hardcoded in who Linn is buying for
     cynthia = person_class.Person("Cynthia", cyn_email, "unknown")
     danielle = person_class.Person("Danielle", dan_email, "unknown")
     dell = person_class.Person("Dell", dell_email, "unknown")
