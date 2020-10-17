@@ -131,10 +131,16 @@ def main():
 
 # function to create the list of names        
 def make_list(x, y):
+    # numbering is from 1 - 10, y is the number the participant has
+    # to add it to the final list we put y - 1 because the index of the list
+    # starts from 0 - 9
     finallist[y-1] = x
 
 # function to create the list of buying for names
 def make_buying_list(x, y):
+    # numbering is from 1 - 10, y is the number the participant has
+    # to add it to the final list we put y - 1 because the index of the list
+    # starts from 0 - 9
     buyinglist[x-1] = y
 
 # function to start main
