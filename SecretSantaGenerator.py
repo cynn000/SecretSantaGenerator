@@ -4,6 +4,11 @@
 # import random and person class module
 import random
 import person_class
+import sendEmail
+
+UNKNOWN = "unknown"
+SCRIPT_START = "---start---"
+SCRIPT_END = "---end---"
 
 # create two list of letters for placeholders
 finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
@@ -34,23 +39,36 @@ linn_email = "linntao72888@gmail.com"
 def main():
     
     # print new line
-    print()
+    # print()
     
     # set index to 0
     idx = 0
     
     # creating a new person class with name, email, and unknown buying for until determined
     # hardcoded in who Linn is buying for
-    cynthia = person_class.Person("Cynthia", cyn_email, "unknown")
-    danielle = person_class.Person("Danielle", dan_email, "unknown")
-    dell = person_class.Person("Dell", dell_email, "unknown")
-    maddison = person_class.Person("Maddison", cyn_email, "unknown")
-    oscar = person_class.Person("Oscar", ocs_email, "unknown")
-    brandon = person_class.Person("Brandon", bran_email, "unknown")
-    michelle = person_class.Person("Michelle", mich_email, "unknown")
-    loann = person_class.Person("Loann", loann_email, "unknown")
-    nic = person_class.Person("Nic", nic_email, "unknown")
+    cynthia = person_class.Person("Cynthia", cyn_email, UNKNOWN)
+    danielle = person_class.Person("Danielle", dan_email, UNKNOWN)
+    dell = person_class.Person("Dell", dell_email, UNKNOWN)
+    maddison = person_class.Person("Maddison", cyn_email, UNKNOWN)
+    oscar = person_class.Person("Oscar", ocs_email, UNKNOWN)
+    brandon = person_class.Person("Brandon", bran_email, UNKNOWN)
+    michelle = person_class.Person("Michelle", mich_email, UNKNOWN)
+    loann = person_class.Person("Loann", loann_email, UNKNOWN)
+    nic = person_class.Person("Nic", nic_email, UNKNOWN)
     linn = person_class.Person("Linn", linn_email, "Maddison")
+
+
+    personList = []
+    personList.append(cynthia)
+    personList.append(danielle)
+    personList.append(dell)
+    personList.append(maddison)
+    personList.append(oscar)
+    personList.append(brandon)
+    personList.append(michelle)
+    personList.append(loann)
+    personList.append(nic)
+    personList.append(linn)
 
     # for each name in list
     for name in namelist:
@@ -68,7 +86,7 @@ def main():
             number2 = numbers[idx + 1]
             
         # printing for testing    
-        print(name, "You are number:", number, "You are buying for number:", number2)
+        # print(name, "You are number:", number, "You are buying for number:", number2)
         
         # create the name list by passing in the name and their own number`
         make_list(name, number)
@@ -83,10 +101,10 @@ def main():
     maddieidx = finallist.index("Maddison")+1
     
     # printing for testing. Hardcoded Linn to buy for Maddison. 
-    print("Linn You are number: 10 You are buying for number:", maddieidx)
+    # print("Linn You are number: 10 You are buying for number:", maddieidx)
 	
     # print new line
-    print()
+    # print()
     
     # loop through the finalist length to list out the names and who they are buying for
     for x in range(len(finallist)):
@@ -112,7 +130,7 @@ def main():
             
         # send emails here
         
-        print(x+1, participant, "is buying for" , buyingfor, buyingidx)
+        # print(x+1, participant, "is buying for" , buyingfor, buyingidx)
         
         # setting the buying_for variable as it is now determined
         if participant == "Cynthia": cynthia.buying_for = buyingfor
@@ -126,8 +144,19 @@ def main():
         if participant == "Nic": nic.buying_for = buyingfor
     
     # hardcoded Linn to buy for Maddison. We baaaaaaad
-    print("10 Linn is buying for Maddison", maddieidx)
+    # print("10 Linn is buying for Maddison", maddieidx)
     
+    print(SCRIPT_START)
+    message=''
+    mailClient=sendEmail.MailClient()
+    for buyer in personList:
+    	message=mailClient.getMessage(buyer.name, buyer.buying_for)
+    	if (buyer==dell or buyer==danielle or buyer==cynthia):
+    		mailClient.send(buyer.email, message)
+    	print('sent to: '+buyer.name)
+    	message=''
+    print(SCRIPT_END)
+
     # send last email for Linn here
 
 # function to create the list of names        
