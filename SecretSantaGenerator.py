@@ -14,6 +14,12 @@ random.shuffle(namelist)
 # main function
 def main():
 
+    # [  ] TODO record matches last time
+    # [  ] TODO print last secret santa matches
+
+    print('last time')
+    print('---------')
+
     print()
     idx = 0
 
@@ -47,7 +53,8 @@ def main():
     
     print("10 Linn is buying for Maddison", maddieidx)
     
-    # send lastt email for mom here
+    # [  ] TODO check new matches are different from the previous matches
+    # [  ] TODO check new matches don't overlap
 
 # function to create the list of names        
 def make_list(x, y):
