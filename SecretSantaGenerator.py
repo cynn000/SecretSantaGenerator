@@ -44,6 +44,7 @@ madd_email = "hinata_maddi@gmail.com"   # 2021 - added email for Maddison
 def main():
     
     # TODO FOR 2021
+    # [   ] TODO add Linn to the namelist
     # [   ] TODO remove Linn and Maddison hardcoding
     # [ Y ] TODO record matches last time
     # [ Y ] TODO print last secret santa matches
@@ -53,6 +54,10 @@ def main():
     # [   ] TODO make sure each buyer appears once
     # [   ] TODO make sure each receiver appears once
     # [   ] TODO make sure no one has themselves
+    # [   ] TODO ensure each participant only appears once (one person isn't buying for two or more people)
+    # [   ] TODO ensure each receiver only appears once (one person isn't receiving from more than one person)
+    # [   ] TODO ensure each participant is not buying for themselves
+    # [   ] TODO ensure Linn does not have Maddison
 
     # 2021 - prints out last years secret santa matches x -> y where x is the buy and y is the receiver
     print('Matches from 2020')
@@ -66,11 +71,6 @@ def main():
     print('Oscar -> Loann')
     print('Loann -> Michelle')
     print('Michelle -> Oscar')
-
-    # 2021 - create a list of matches from last year
-    # 2021 - this is a list with all the matches from last year [[x, y], [x,y]] where x is the buyer and y is the receiver
-    # 2021 - probably don't need this anymore since we added the lastyear_match variable in Person class
-    lastyearlist = [["Cynthia", "Danielle" ], ["Danielle", "Linn"], ["Linn", "Maddison"], ["Maddison", "Dell"], ["Dell", "Brandon"], ["Brandon", "Nic"], ["Nic", "Cynthia"], ["Oscar", "Loann"], ["Loann", "Michelle"], ["Michlle", "Oscar"]]
 
     # set index to 0
     idx = 0
@@ -106,8 +106,8 @@ def main():
         # assign a number from the numbers list
         number = numbers[idx]
         
-        # if the number chosen is 8
-        if idx == 8:  
+        # if the number chosen is 9
+        if idx == 9:  
             # set number2 (which is the number of the person who we are buying for) to the very first number in the list
             # this means that the very last person will buy for the very first person (watch video for reference)
             number2 = numbers[0]
@@ -170,25 +170,23 @@ def main():
         if participant == "Michelle": michelle.buying_for = buyingfor
         if participant == "Loann": loann.buying_for = buyingfor
         if participant == "Nic": nic.buying_for = buyingfor
-        if participant == "Linn": linn.buyingfor = buying_for   # 2021 - added buying_for variable for Linn
-    
-    # hardcoded Linn to buy for Maddison. We baaaaaaad
-    # print("10 Linn is buying for Maddison", maddieidx)
-    
+        if participant == "Linn": linn.buying_for = buyingfor   # 2021 - added buying_for variable for Linn
+
+    for person in personList:
+        print(person.get_name(), "is buying for", person.get_buying_for())
+
     '''
     print(SCRIPT_START)
     message=''
     mailClient=sendEmail.MailClient()
     for buyer in personList:
-    	message=mailClient.getMessage(buyer.name, buyer.buying_for)
-    	if (buyer==dell or buyer==danielle or buyer==cynthia):
-    		mailClient.send(buyer.email, message)
-    	print('sent to: '+buyer.name)
-    	message=''
+        message=mailClient.getMessage(buyer.name, buyer.buying_for)
+        if (buyer==dell or buyer==danielle or buyer==cynthia):
+            mailClient.send(buyer.email, message)
+        print('sent to: '+buyer.name)
+        message=''
     print(SCRIPT_END)
     '''
-
-    # send last email for Linn here
 
 # function to create the list of names        
 def make_list(x, y):

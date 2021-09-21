@@ -8,4 +8,11 @@ class Person:
         self.buying_for = buying_for
         self.lastyear_match = lastyear_match
    
-        
+    def get_name(self):
+        return self.name
+
+    def get_buying_for(self):
+        return self.buying_for
+
+    def get_last_year_buying_for(self):
+        return self.lastyear_match
