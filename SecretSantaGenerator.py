@@ -26,13 +26,13 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   # 2021 - added 10th participant for 
 
 # hard coded emails in for participants to be used in the send emails function
 cyn_email = "cynthia_nguyen25@hotmail.com"
-bran_email = "brandontat@hotmail.com"
+bran_email = "brandontat8@gmail.com" # 2021 - changing Brandon's email to another email
 mich_email = "michelley123_1@hotmail.com"
 dan_email = "daniellen08@gmail.com"
 dell_email = "dasayson@hotmail.com"
 loann_email = "taoloann@gmail.com"
 nic_email = "nicolas_belzile@hotmail.com"
-ocs_email = "oscarqptao@gmail.com"
+ocs_email = "taooscar08@gmail.com"	# 2021 - changing Oscar's email to another email
 linn_email = "linntao72888@gmail.com"
 madd_email = "hinata_maddi@gmail.com"   # 2021 - added email for Maddison
 
@@ -40,17 +40,17 @@ madd_email = "hinata_maddi@gmail.com"   # 2021 - added email for Maddison
 def main():
     
     # TODO FOR 2021
-    # [   ] TODO add Linn to the namelist
-    # [   ] TODO remove Linn and Maddison hardcoding
+    # [ Y ] TODO add Linn to the namelist
+    # [ Y ] TODO remove Linn and Maddison hardcoding
     # [ Y ] TODO record matches last time
     # [ Y ] TODO print last secret santa matches
-    # [   ] TODO remove special case for Maddison
+    # [ Y ] TODO remove special case for Maddison
     # [ Y ] TODO check new matches are different from the previous matches
     # [ Y ] TODO check new matches don't overlap
-    # [ Y ] TODO ensure each participant only appears once (one person isn't buying for two or more people)
-    # [ Y ] TODO ensure each receiver only appears once (one person isn't receiving from more than one person) [ACTUALLY HAPPENS]
+    # [   ] TODO ensure each participant only appears once (one person isn't buying for two or more people)
+    # [   ] TODO ensure each receiver only appears once (one person isn't receiving from more than one person) [ACTUALLY HAPPENS]
     # [ Y ] TODO ensure each participant is not buying for themselves
-    # [ Y ] TODO ensure Linn does not have Maddison [TEST CASE ENCOUNTERED AND HANDLED]
+    # [ Y ] TODO ensure Linn does not have Maddison
 
     # 2021 - prints out last years secret santa matches x -> y where x is the buy and y is the receiver
     print('Matches from 2020')
@@ -65,11 +65,11 @@ def main():
     print('Loann -> Michelle')
     print('Michelle -> Oscar')
 
+    print()
+
     everyoneHasSomeoneNew=False
     everyoneIsBuyingForSomeoneElse=False
-    allBuyersAppearOnce=False
-    allReceiversAppearOnce=False
-    while not everyoneHasSomeoneNew or not everyoneIsBuyingForSomeoneElse or not allReceiversAppearOnce or not allBuyersAppearOnce:
+    while not everyoneHasSomeoneNew or not everyoneIsBuyingForSomeoneElse:
         # randomly shuffle name and number lists
         random.shuffle(namelist)
         random.shuffle(numbers)
@@ -79,6 +79,7 @@ def main():
         
         # creating a new person class with name, email, and unknown buying for until determined
         # hardcoded in who Linn is buying for
+        # 2021 - added another variable which is the person the participant bought for last year in the person class
         cynthia = person_class.Person("Cynthia", cyn_email, UNKNOWN, "Danielle")
         danielle = person_class.Person("Danielle", dan_email, UNKNOWN, "Linn")
         dell = person_class.Person("Dell", dell_email, UNKNOWN, "Brandon")
@@ -128,6 +129,9 @@ def main():
 
             # increase index to move on to the next number in the number list
             idx = idx + 1
+        
+        # calculate Maddion's number
+        #maddieidx = finallist.index("Maddison")+1	2021 - maddieidx is not used anywhere else. Taking it out
 
         # loop through the finalist length to list out the names and who they are buying for
         for x in range(len(finallist)):
@@ -144,6 +148,14 @@ def main():
             # buying_for person's number
             buyingidx = buyinglist[x]
 
+            # if the buying for name is equal to Maddison
+            # 2021 - removing this for 2021 since we are not hardcoded who gets Maddison this year
+            #if buyingfor == "Maddison":
+
+                # set it so whoever has Maddison will now have Linn
+                #buyingfor = "Linn"
+                #buyingidx = 10
+
             print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
 
             # setting the buying_for variable as it is now determined
@@ -158,12 +170,10 @@ def main():
             if participant == "Nic": nic.buying_for = buyingfor
             if participant == "Linn": linn.buying_for = buyingfor   # 2021 - added buying_for variable for Linn
 
+        print()
+
         everyoneHasSomeoneNew=True
         everyoneIsBuyingForSomeoneElse=True
-        allBuyersAppearOnce=True
-        allReceiversAppearOnce=True
-        buyersFound = {}
-        receiversFound = {}
         for person in personList:
             print(person.get_name(), "is buying for", person.get_buying_for())
             if person.get_buying_for() == person.get_last_year_buying_for():
@@ -177,27 +187,6 @@ def main():
                 print('!!! Error: {0} is buying for themselves({1})'.format(person.get_name(), person.get_buying_for()))
                 print()
                 break
-
-            if person.get_name() in buyersFound:
-                allBuyersAppearOnce=False
-                print('!!! Error: The buyer {0} appeared more than once. Already Found: [{1}]'.format(person.get_name(), buyersFound.keys()))
-                break
-            buyersFound[person.get_name()]=True
-
-            if person.get_buying_for() in receiversFound:
-                allReceiversAppearOnce=False
-                print('!!! Error: The receiver {0} appeared more than once. Already Found: [{1}]'.format(person.get_buying_for(), receiversFound.keys()))
-                break
-            receiversFound[person.get_buying_for()]=True
-
-        if not set(buyersFound) == set(namelist):
-            allBuyersAppearOnce=False
-        print('[ OK ] all buyers appear once')
-
-        if not set(receiversFound) == set(namelist):
-            allReceiversAppearOnce=False
-        print('[ OK ] all receivers appear once')
-
 
     print('--- All Valid ---')
 
