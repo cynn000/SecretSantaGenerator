@@ -69,7 +69,9 @@ def main():
 
     everyoneHasSomeoneNew=False
     everyoneIsBuyingForSomeoneElse=False
-    while not everyoneHasSomeoneNew or not everyoneIsBuyingForSomeoneElse:
+    allBuyersAppearOnce=False
+    allReceiversAppearOnce=False
+    while not everyoneHasSomeoneNew or not everyoneIsBuyingForSomeoneElse or not allReceiversAppearOnce or not allBuyersAppearOnce:
         # randomly shuffle name and number lists
         random.shuffle(namelist)
         random.shuffle(numbers)
@@ -129,9 +131,6 @@ def main():
 
             # increase index to move on to the next number in the number list
             idx = idx + 1
-        
-        # calculate Maddion's number
-        #maddieidx = finallist.index("Maddison")+1	2021 - maddieidx is not used anywhere else. Taking it out
 
         # loop through the finalist length to list out the names and who they are buying for
         for x in range(len(finallist)):
@@ -148,15 +147,7 @@ def main():
             # buying_for person's number
             buyingidx = buyinglist[x]
 
-            # if the buying for name is equal to Maddison
-            # 2021 - removing this for 2021 since we are not hardcoded who gets Maddison this year
-            #if buyingfor == "Maddison":
-
-                # set it so whoever has Maddison will now have Linn
-                #buyingfor = "Linn"
-                #buyingidx = 10
-
-            print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
+            # print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
 
             # setting the buying_for variable as it is now determined
             if participant == "Cynthia": cynthia.buying_for = buyingfor
@@ -174,6 +165,10 @@ def main():
 
         everyoneHasSomeoneNew=True
         everyoneIsBuyingForSomeoneElse=True
+        allBuyersAppearOnce=True
+        allReceiversAppearOnce=True
+        buyersFound = {}
+        receiversFound = {}
         for person in personList:
             print(person.get_name(), "is buying for", person.get_buying_for())
             if person.get_buying_for() == person.get_last_year_buying_for():
@@ -187,6 +182,26 @@ def main():
                 print('!!! Error: {0} is buying for themselves({1})'.format(person.get_name(), person.get_buying_for()))
                 print()
                 break
+
+            if person.get_name() in buyersFound:
+                allBuyersAppearOnce=False
+                print('!!! Error: The buyer {0} appeared more than once. Already Found: [{1}]'.format(person.get_name(), buyersFound.keys()))
+                break
+            buyersFound[person.get_name()]=True
+
+            if person.get_buying_for() in receiversFound:
+                allReceiversAppearOnce=False
+                print('!!! Error: The receiver {0} appeared more than once. Already Found: [{1}]'.format(person.get_buying_for(), receiversFound.keys()))
+                break
+            receiversFound[person.get_buying_for()]=True
+
+        if not set(buyersFound) == set(namelist):
+            allBuyersAppearOnce=False
+        print('[ OK ] all buyers appear once')
+
+        if not set(receiversFound) == set(namelist):
+            allReceiversAppearOnce=False
+        print('[ OK ] all receivers appear once')
 
     print('--- All Valid ---')
 
