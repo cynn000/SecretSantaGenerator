@@ -213,14 +213,12 @@ def main():
     print(SCRIPT_START)
     message=''
     mailClient=sendEmail.MailClient()
-    '''
     for buyer in personList:
-        message=mailClient.getMessage(buyer.name, buyer.buying_for)
-        if (buyer==dell or buyer==danielle or buyer==cynthia):
+        message+=mailClient.getMessage(buyer.name, buyer.buying_for)
+        if (buyer==dell or buyer==cynthia):
             mailClient.send(buyer.email, message)
-        print('sent to: '+buyer.name)
+            print('sent to: '+buyer.name)
         message=''
-    '''
     mailClient.send('ssg.dobby@gmail.com', messageForChecking)
     print('sent debug email to dobby')
     print(SCRIPT_END)
