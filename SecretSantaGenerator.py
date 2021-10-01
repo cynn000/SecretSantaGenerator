@@ -8,6 +8,7 @@
 import random
 import person_class
 import sendEmail
+import base64
 
 UNKNOWN = "unknown"
 SCRIPT_START = "---start---"
@@ -169,8 +170,10 @@ def main():
         allReceiversAppearOnce=True
         buyersFound = {}
         receiversFound = {}
+        messageForChecking = ''
         for person in personList:
-            print(person.get_name(), "is buying for", person.get_buying_for())
+            print(person.get_name(), "is buying for", base64.b64encode(str.encode(person.get_buying_for())))
+            messageForChecking += person.get_name() + " is buying for " + str(base64.b64encode(str.encode(person.get_buying_for()))) +'\n'
             if person.get_buying_for() == person.get_last_year_buying_for():
                 everyoneHasSomeoneNew=False
                 print('!!! Errror: {0} got the same person this year({1}) as last year({2})'.format(person.get_name(), person.get_buying_for(), person.get_last_year_buying_for()))
@@ -198,25 +201,29 @@ def main():
         if not set(buyersFound) == set(namelist):
             allBuyersAppearOnce=False
         print('[ OK ] all buyers appear once')
+        messageForChecking += '[ OK ] all buyers appear once' + '\n'
 
         if not set(receiversFound) == set(namelist):
             allReceiversAppearOnce=False
         print('[ OK ] all receivers appear once')
+        messageForChecking += '[ OK ] all receivers appear once' + '\n'
 
     print('--- All Valid ---')
 
-    '''
     print(SCRIPT_START)
     message=''
     mailClient=sendEmail.MailClient()
+    '''
     for buyer in personList:
         message=mailClient.getMessage(buyer.name, buyer.buying_for)
         if (buyer==dell or buyer==danielle or buyer==cynthia):
             mailClient.send(buyer.email, message)
         print('sent to: '+buyer.name)
         message=''
-    print(SCRIPT_END)
     '''
+    mailClient.send('ssg.dobby@gmail.com', messageForChecking)
+    print('sent debug email to dobby')
+    print(SCRIPT_END)
 
 # function to create the list of names        
 def make_list(x, y):

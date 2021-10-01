@@ -34,7 +34,7 @@ class MailClient:
 	def send(self, email, message):
 		port=465
 		smtp_server='smtp.gmail.com'
-		sender_email='ssg.ocdlabs@gmail.com'
+		sender_email='ssg.dobby@gmail.com'
 		receiver_email=email
 		context=ssl.create_default_context()
 
