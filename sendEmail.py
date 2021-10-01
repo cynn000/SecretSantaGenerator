@@ -5,8 +5,8 @@ import getpass
 def sendActual():
 	port=465
 	smtp_server='smtp.gmail.com'
-	sender_email='ssg.ocdlabs@gmail.com'
-	receiver_email='cynthia_nguyen25@hotmail.com'
+	sender_email='ssg.dobby@gmail.com'
+	receiver_email='dasayson@hotmail.com'
 	password=getpass.getpass()
 	message='This message was sent by a robot'
 	context=ssl.create_default_context()
@@ -41,3 +41,7 @@ class MailClient:
 		with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
 			server.login(sender_email, self.password)
 			server.sendmail(sender_email, receiver_email, message)
+
+#VPN must be off/paused
+if __name__=="__main__":
+	sendActual()
