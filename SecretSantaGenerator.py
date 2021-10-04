@@ -48,8 +48,8 @@ def main():
     # [ Y ] TODO remove special case for Maddison
     # [ Y ] TODO check new matches are different from the previous matches
     # [ Y ] TODO check new matches don't overlap
-    # [   ] TODO ensure each participant only appears once (one person isn't buying for two or more people)
-    # [   ] TODO ensure each receiver only appears once (one person isn't receiving from more than one person) [ACTUALLY HAPPENS]
+    # [ Y ] TODO ensure each participant only appears once (one person isn't buying for two or more people)
+    # [ Y ] TODO ensure each receiver only appears once (one person isn't receiving from more than one person) [ACTUALLY HAPPENS]
     # [ Y ] TODO ensure each participant is not buying for themselves
     # [ Y ] TODO ensure Linn does not have Maddison
 
@@ -170,7 +170,7 @@ def main():
         allReceiversAppearOnce=True
         buyersFound = {}
         receiversFound = {}
-        messageForChecking = ''
+        messageForChecking = 'Matches for Secret Santa 2021' + '\n'
         for person in personList:
             print(person.get_name(), "is buying for", base64.b64encode(str.encode(person.get_buying_for())))
             messageForChecking += person.get_name() + " is buying for " + str(base64.b64encode(str.encode(person.get_buying_for()))) +'\n'
