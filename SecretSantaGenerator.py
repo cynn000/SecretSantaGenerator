@@ -53,11 +53,14 @@ def main():
     # [ Y ] TODO ensure each participant is not buying for themselves
     # [ Y ] TODO ensure Linn does not have Maddison
 
+    # TODO FOR 2022
     # [   ] TODO move emails to a config file
     # [   ] TODO set current year to config file
     # [   ] TODO move previous year matches to an archive file
     # [   ] TODO create an encoded output file to allow resending
     # [   ] TODO allow resending using output file
+    # [   ] TODO create a list in person_class for all the matches
+    # [   ] TODO add match to the person_class so we don't have to manually enter in matches each year
 
     # 2021 - prints out last years secret santa matches x -> y where x is the buy and y is the receiver
     print('Matches from 2020')
