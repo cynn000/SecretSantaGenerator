@@ -16,16 +16,18 @@ SCRIPT_END = "---end---"
 
 # create two list of letters for placeholders
 # 2021 - added 10th letter for Linn
-finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-buyinglist = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+finallist = ["a", "b", "c", "d", "e", "f"]
+buyinglist = ["a", "b", "c", "d", "e", "f"]
 
 # name list of all participants, minus Linn because she will be hardcoded who she buys for
 namelist= ["Cynthia", "Danielle", "Dell", "Maddison", "Linn", "Oscar", "Brandon", "Michelle", "Loann", "Nic"]   # 2021 - added Linn to the list because she will NOT be hardcoded any more
+namelist=['Justin', 'Fion', 'Zia', 'Leidy', 'Cathy', 'Danie']
 
 # number list of corresponding to all participants
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   # 2021 - added 10th participant for Linn
+numbers = [1, 2, 3, 4, 5, 6]   # 2021 - added 10th participant for Linn
 
 # hard coded emails in for participants to be used in the send emails function
+'''
 cyn_email = "cynthia_nguyen25@hotmail.com"
 bran_email = "brandontat8@gmail.com" # 2021 - changing Brandon's email to another email
 mich_email = "michelley123_1@hotmail.com"
@@ -36,7 +38,7 @@ nic_email = "nicolas_belzile@hotmail.com"
 ocs_email = "taooscar08@gmail.com"	# 2021 - changing Oscar's email to another email
 linn_email = "linntao72888@gmail.com"
 madd_email = "hinata_maddi@gmail.com"   # 2021 - added email for Maddison
-
+'''
 # main function to do all the magic
 def main():
     
@@ -63,6 +65,7 @@ def main():
     # [   ] TODO add match to the person_class so we don't have to manually enter in matches each year
 
     # 2021 - prints out last years secret santa matches x -> y where x is the buy and y is the receiver
+    '''
     print('Matches from 2020')
     print('Cynthia -> Danielle')
     print('Danielle -> Linn')
@@ -74,6 +77,7 @@ def main():
     print('Oscar -> Loann')
     print('Loann -> Michelle')
     print('Michelle -> Oscar')
+    '''
 
     print()
 
@@ -92,6 +96,7 @@ def main():
         # creating a new person class with name, email, and unknown buying for until determined
         # hardcoded in who Linn is buying for
         # 2021 - added another variable which is the person the participant bought for last year in the person class
+        '''
         cynthia = person_class.Person("Cynthia", cyn_email, UNKNOWN, "Danielle")
         danielle = person_class.Person("Danielle", dan_email, UNKNOWN, "Linn")
         dell = person_class.Person("Dell", dell_email, UNKNOWN, "Brandon")
@@ -102,8 +107,16 @@ def main():
         loann = person_class.Person("Loann", loann_email, UNKNOWN, "Michelle")
         nic = person_class.Person("Nic", nic_email, UNKNOWN, "Cynthia")
         linn = person_class.Person("Linn", linn_email, UNKNOWN, "Maddison")  # 2021 - NOT hardcording for Linn this year, changing from Maddision to UNKNOWN
+        '''
+        justin = person_class.Person('Justin', 'jlau78912@gmail.com', UNKNOWN, 'Justin')
+        fion = person_class.Person('Fion', 'fionwlei@gmail.com', UNKNOWN, 'Fion')
+        zia = person_class.Person('Zia', 'santosz87@yahoo.com', UNKNOWN, 'Zia')
+        leidy = person_class.Person('Leidy', 'leidyhe123@gmail.com', UNKNOWN, 'Leidy')
+        cathy = person_class.Person('Cathy', 'cathy.le16@gmail.com', UNKNOWN, 'Cathy')
+        danie = person_class.Person('Danie', 'daniellen08@gmail.com', UNKNOWN, 'Danie')
 
         personList = []
+        '''
         personList.append(cynthia)
         personList.append(danielle)
         personList.append(dell)
@@ -114,6 +127,13 @@ def main():
         personList.append(loann)
         personList.append(nic)
         personList.append(linn)
+        '''
+        personList.append(justin)
+        personList.append(fion)
+        personList.append(zia)
+        personList.append(leidy)
+        personList.append(cathy)
+        personList.append(danie)
 
         # for each name in list
         for name in namelist:
@@ -122,7 +142,7 @@ def main():
             number = numbers[idx]
 
             # if the number chosen is 9
-            if idx == 9:
+            if idx == 5:
                 # set number2 (which is the number of the person who we are buying for) to the very first number in the list
                 # this means that the very last person will buy for the very first person (watch video for reference)
                 number2 = numbers[0]
@@ -160,6 +180,7 @@ def main():
             # print(x+1, finallist[x], "is buying for" , buyingfor, buyingidx)
 
             # setting the buying_for variable as it is now determined
+            '''
             if participant == "Cynthia": cynthia.buying_for = buyingfor
             if participant == "Danielle": danielle.buying_for = buyingfor
             if participant == "Dell": dell.buying_for = buyingfor
@@ -170,6 +191,14 @@ def main():
             if participant == "Loann": loann.buying_for = buyingfor
             if participant == "Nic": nic.buying_for = buyingfor
             if participant == "Linn": linn.buying_for = buyingfor   # 2021 - added buying_for variable for Linn
+            '''
+            if participant == 'Justin': justin.buying_for = buyingfor
+            if participant == 'Fion': fion.buying_for = buyingfor
+            if participant == 'Zia': zia.buying_for = buyingfor
+            if participant == 'Leidy': leidy.buying_for = buyingfor
+            if participant == 'Cathy': cathy.buying_for = buyingfor
+            if participant == 'Danie': danie.buying_for = buyingfor
+
 
         print()
 

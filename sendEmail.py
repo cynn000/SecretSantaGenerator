@@ -18,7 +18,7 @@ def sendActual():
 class MailClient:
 	port=465
 	smtp_server='smtp.gmail.com'
-	sender_email='ssg.ocdlabs@gmail.com'
+	sender_email='ssg.dobby@gmail.com'
 	context=ssl.create_default_context()
 	def __init__(self):
 		self.password=getpass.getpass()
