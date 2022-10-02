@@ -18,10 +18,8 @@ def sendActual():
 class MailClient:
 	port=465
 	smtp_server='smtp.gmail.com'
-	sender_email='ssg.ocdlabs@gmail.com'
+	sender_email='ssg.dobby@gmail.com'
 	context=ssl.create_default_context()
-	def __init__(self):
-		self.password=getpass.getpass()
 
 	def getMessage(self, buyer, buying_for):
 		message=''
@@ -36,11 +34,14 @@ class MailClient:
 		smtp_server='smtp.gmail.com'
 		sender_email='ssg.dobby@gmail.com'
 		receiver_email=email
-		context=ssl.create_default_context()
-
-		with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-			server.login(sender_email, self.password)
-			server.sendmail(sender_email, receiver_email, message)
+		s = smtplib.SMTP('smtp.gmail.com', 587)
+		s.starttls()
+		with open("appPassword.txt", "r") as source:
+			for line in source:
+				line = line.strip()
+				s.login(sender_email, line)
+		s.sendmail(sender_email, receiver_email, message)
+		s.quit()
 
 #VPN must be off/paused
 if __name__=="__main__":

@@ -14,16 +14,22 @@ UNKNOWN = "unknown"
 SCRIPT_START = "---start---"
 SCRIPT_END = "---end---"
 
-# create two list of letters for placeholders
-# 2021 - added 10th letter for Linn
-finallist = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-buyinglist = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-
 # name list of all participants, minus Linn because she will be hardcoded who she buys for
-namelist= ["Cynthia", "Danielle", "Dell", "Maddison", "Linn", "Oscar", "Brandon", "Michelle", "Loann", "Nic"]   # 2021 - added Linn to the list because she will NOT be hardcoded any more
+namelist = []
+with open("participant_list.txt", "r") as source:
+    for line in source:
+        line = line.strip()
+        namelist.append(line)
 
 # number list of corresponding to all participants
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]   # 2021 - added 10th participant for Linn
+numbers = list(range(len(namelist)))
+
+# create two list of letters for placeholders
+finallist = []
+buyinglist = []
+for letter in list('abcdefghijklmnop')[:len(numbers)]:
+    finallist.append(letter)
+    buyinglist.append(letter)
 
 # hard coded emails in for participants to be used in the send emails function
 cyn_email = "cynthia_nguyen25@hotmail.com"
@@ -31,11 +37,13 @@ bran_email = "brandontat8@gmail.com" # 2021 - changing Brandon's email to anothe
 mich_email = "michelley123_1@hotmail.com"
 dan_email = "daniellen08@gmail.com"
 dell_email = "dasayson@hotmail.com"
+'''
 loann_email = "taoloann@gmail.com"
 nic_email = "nicolas_belzile@hotmail.com"
+'''
 ocs_email = "taooscar08@gmail.com"	# 2021 - changing Oscar's email to another email
 linn_email = "linntao72888@gmail.com"
-madd_email = "hinata_maddi@gmail.com"   # 2021 - added email for Maddison
+madd_email = "hinata.maddi@gmail.com"   # 2021 - added email for Maddison
 
 # main function to do all the magic
 def main():
@@ -61,6 +69,9 @@ def main():
     # [   ] TODO allow resending using output file
     # [   ] TODO create a list in person_class for all the matches
     # [   ] TODO add match to the person_class so we don't have to manually enter in matches each year
+
+    # TODO ACTUALLY
+    # [   ] Make a list of all previous matches
 
     # 2021 - prints out last years secret santa matches x -> y where x is the buy and y is the receiver
     print('Matches from 2020')
@@ -92,16 +103,16 @@ def main():
         # creating a new person class with name, email, and unknown buying for until determined
         # hardcoded in who Linn is buying for
         # 2021 - added another variable which is the person the participant bought for last year in the person class
-        cynthia = person_class.Person("Cynthia", cyn_email, UNKNOWN, "Danielle")
-        danielle = person_class.Person("Danielle", dan_email, UNKNOWN, "Linn")
-        dell = person_class.Person("Dell", dell_email, UNKNOWN, "Brandon")
-        maddison = person_class.Person("Maddison", madd_email, UNKNOWN, "Dell")  # 2021 - changed Maddison email to madd_email since she has an email now
-        oscar = person_class.Person("Oscar", ocs_email, UNKNOWN, "Loann")
-        brandon = person_class.Person("Brandon", bran_email, UNKNOWN, "Nic")
-        michelle = person_class.Person("Michelle", mich_email, UNKNOWN, "Oscar")
-        loann = person_class.Person("Loann", loann_email, UNKNOWN, "Michelle")
-        nic = person_class.Person("Nic", nic_email, UNKNOWN, "Cynthia")
-        linn = person_class.Person("Linn", linn_email, UNKNOWN, "Maddison")  # 2021 - NOT hardcording for Linn this year, changing from Maddision to UNKNOWN
+        cynthia = person_class.Person("Cynthia", cyn_email, UNKNOWN, ["Danielle", "Brandon"])
+        danielle = person_class.Person("Danielle", dan_email, UNKNOWN, ["Linn", "Dell"])
+        dell = person_class.Person("Dell", dell_email, UNKNOWN, ["Brandon", "Cynthia"])
+        maddison = person_class.Person("Maddison", madd_email, UNKNOWN, ["Dell", "Michelle"])  # 2021 - changed Maddison email to madd_email since she has an email now
+        oscar = person_class.Person("Oscar", ocs_email, UNKNOWN, ["Loann", "Danielle"])
+        brandon = person_class.Person("Brandon", bran_email, UNKNOWN, ["Nic", "Maddison"])
+        michelle = person_class.Person("Michelle", mich_email, UNKNOWN, ["Oscar", "Loann"])
+        #loann = person_class.Person("Loann", loann_email, UNKNOWN, ["Michelle", "Linn"])
+        #nic = person_class.Person("Nic", nic_email, UNKNOWN, ["Cynthia", "Oscar"])
+        linn = person_class.Person("Linn", linn_email, UNKNOWN, ["Maddison", "Nic"])  # 2021 - NOT hardcording for Linn this year, changing from Maddision to UNKNOWN
 
         personList = []
         personList.append(cynthia)
@@ -111,8 +122,8 @@ def main():
         personList.append(oscar)
         personList.append(brandon)
         personList.append(michelle)
-        personList.append(loann)
-        personList.append(nic)
+        #personList.append(loann)
+        #personList.append(nic)
         personList.append(linn)
 
         # for each name in list
@@ -121,8 +132,8 @@ def main():
             # assign a number from the numbers list
             number = numbers[idx]
 
-            # if the number chosen is 9
-            if idx == 9:
+            # if the number chosen is len -1
+            if idx == len(numbers)-1:
                 # set number2 (which is the number of the person who we are buying for) to the very first number in the list
                 # this means that the very last person will buy for the very first person (watch video for reference)
                 number2 = numbers[0]
@@ -167,8 +178,8 @@ def main():
             if participant == "Oscar": oscar.buying_for = buyingfor
             if participant == "Brandon": brandon.buying_for = buyingfor
             if participant == "Michelle": michelle.buying_for = buyingfor
-            if participant == "Loann": loann.buying_for = buyingfor
-            if participant == "Nic": nic.buying_for = buyingfor
+            #if participant == "Loann": loann.buying_for = buyingfor
+            #if participant == "Nic": nic.buying_for = buyingfor
             if participant == "Linn": linn.buying_for = buyingfor   # 2021 - added buying_for variable for Linn
 
         print()
@@ -179,13 +190,13 @@ def main():
         allReceiversAppearOnce=True
         buyersFound = {}
         receiversFound = {}
-        messageForChecking = 'Matches for Secret Santa 2021' + '\n'
+        messageForChecking = 'Matches for Secret Santa 2022' + '\n'
         for person in personList:
             print(person.get_name(), "is buying for", base64.b64encode(str.encode(person.get_buying_for())))
             messageForChecking += person.get_name() + " is buying for " + str(base64.b64encode(str.encode(person.get_buying_for()))) +'\n'
-            if person.get_buying_for() == person.get_last_year_buying_for():
+            if person.get_buying_for() in person.get_previous_match_list():
                 everyoneHasSomeoneNew=False
-                print('!!! Errror: {0} got the same person this year({1}) as last year({2})'.format(person.get_name(), person.get_buying_for(), person.get_last_year_buying_for()))
+                print('!!! Errror: {0} got a previous match: {1}'.format(person.get_name(), person.get_previous_match_list()))
                 print()
                 break
 

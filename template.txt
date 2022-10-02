@@ -1,6 +1,8 @@
 Hey there, --name--,
 
-You're receiving this because you're part of Secret Santa 2021!
+This is a test!
+
+You're receiving this because you're part of Secret Santa 2022!
 You are buying for: --buying_for--.
 
 Thanks,
